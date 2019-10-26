@@ -5,20 +5,21 @@ import com.example.mvvm.data.entity.Movies
 import com.example.mvvm.data.entity.ResponseMovies
 import com.example.mvvm.network.Network
 import com.example.mvvm.network.NetworkListener
+import com.example.mvvm.network.Routes
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class MoviesRepository {
+class MovieRepository(private val routes: Routes) {
 
     val _result = MutableLiveData<List<Movies>>()
 
     fun getMovies(networkListener: NetworkListener?) {
-        Network.routes().getMovies().enqueue(object : Callback<ResponseMovies> {
+        routes.getMovies().enqueue(object : Callback<ResponseMovies> {
 
             override fun onResponse(call: Call<ResponseMovies>, response: Response<ResponseMovies>) {
                 if (response.isSuccessful) {
-                    networkListener?.onSuccess()
+                    networkListener?.onSuccess(response.body()?.results.toString())
                     _result.value = response.body()?.results
 
                 } else{

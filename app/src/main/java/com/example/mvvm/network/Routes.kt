@@ -1,11 +1,11 @@
 package com.example.mvvm.network
 
-import okhttp3.Call
+import com.example.mvvm.data.entity.ResponseMovies
 import retrofit2.http.GET
 
 interface Routes {
 
-//    @GET("discover/movie")
-//    fun getMovies() : Call<ResponseMovies>
+    @GET("discover/movie")
+    fun getMovies() : retrofit2.Call<ResponseMovies>
 
 }
