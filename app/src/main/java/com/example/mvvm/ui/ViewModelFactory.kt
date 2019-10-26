@@ -1,4 +1,4 @@
 package com.example.mvvm
 
-class MainViewModel {
+class ViewModelFactory {
 }
